@@ -4,3 +4,6 @@
 # Node
 **/package-lock.json
 **/node_modules
+
+# Distribution folder
+/client/dist
