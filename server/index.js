@@ -1,3 +1,5 @@
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
@@ -5,7 +7,6 @@ import { fileURLToPath } from "url";
 
 // Import extra routes
 import todoRoutes from "./routes/todos.js";
-import mongoose from "mongoose";
 
 // Load environment variables
 dotenv.config({ path: "../.env" });
@@ -16,16 +17,25 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = process.env.PORT;
 
+// Body parser
+app.use(
+	bodyParser.urlencoded({
+		extended: false,
+	})
+);
+app.use(bodyParser.json());
+
 // Static files path
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// Extra routes
+app.use("/api/todos", todoRoutes);
 
 // Index
 app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
-
-// Extra routes
-app.use("/api/todos", todoRoutes);
 
 // Connect to mongo & run
 mongoose

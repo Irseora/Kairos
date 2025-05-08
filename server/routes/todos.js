@@ -16,8 +16,10 @@ router.get("/", async (req, res) => {
 // Add a new todo to list
 router.post("/", async (req, res) => {
 	try {
+		console.log(req.body.text);
 		const toAdd = new Todo({ text: req.body.text });
 		const saved = await toAdd.save();
+		console.log();
 		res.status(201).json(saved);
 	} catch (err) {
 		res.status(400).json({ error: "Failed to create todo!" });
@@ -27,7 +29,7 @@ router.post("/", async (req, res) => {
 // Toggle done-ness of a given todo
 router.put("/:id", async (req, res) => {
 	try {
-		const toToggle = Todo.findById(req.params.id);
+		const toToggle = await Todo.findById(req.params.id);
 		if (!toToggle)
 			return res.status(404).json({ error: "Could not find todo!" });
 
