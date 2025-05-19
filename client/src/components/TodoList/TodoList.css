@@ -1,3 +1,14 @@
 .card-title {
-    color: var(--text-color)
+    color: var(--brown-dark)
+}
+
+.todo {
+    cursor: pointer;
+    color: var(--brown-dark)
+}
+
+.todo-done {
+    cursor: pointer;
+    text-decoration: line-through;
+    color: var(--brown-lighter)
 }

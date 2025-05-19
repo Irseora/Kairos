@@ -9,13 +9,8 @@ const TodoList = ({ list, onToggleTodo }) => {
 					{list.todos.map((todo) => (
 						<li
 							key={todo.id}
-							className={"list-group-item"}
+							className={`list-group-item ${todo.done ? "todo-done" : "todo"}`}
 							onClick={() => onToggleTodo(todo.id)}
-							style={{
-								cursor: "pointer",
-								textDecoration: todo.done ? "line-through" : "none",
-								color: todo.done ? "#8a877d" : "#594100",
-							}}
 						>
 							{todo.text}
 						</li>

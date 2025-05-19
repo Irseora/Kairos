@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import TodoList from "../components/TodoList/TodoList.jsx";
 import { mockLists } from "../mockdata.js";
 import QuillIcon from "../assets/icons/QuillIcon.jsx";

@@ -1,17 +1,17 @@
 :root {
+    --peach-lighter: #FFE6E6;
     --peach-light: #FFDBDB;
     --peach-dark: #FFC6C6;
+
+    --brown-lighter: #837b67;
     --brown-light: #644A07;
     --brown-dark: #594100;
-
-    --text-color: #594100;
-    --bg-color: #ffe6e6;
 
     --font-general: 'Sour Gummy';
 }
 
 body {
-    color: var(--text-color);
-    background-color: var(--bg-color);
+    color: var(--brown-dark);
+    background-color: var(--peach-lighter);
     font-family: var(--font-general);
 }

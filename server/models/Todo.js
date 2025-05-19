@@ -2,8 +2,26 @@ import mongoose from "mongoose";
 
 const todoSchema = new mongoose.Schema(
 	{
-		text: { type: String, required: true },
-		done: { type: Boolean, default: false },
+		todoListId: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "TodoList",
+			required: true,
+		},
+		text: {
+			type: String,
+			required: true,
+			trim: true,
+		},
+		isCompleted: {
+			type: Boolean,
+			default: false,
+		},
+		dueDate: Date,
+		priority: {
+			type: String,
+			enum: ["low", "medium", "high"],
+			default: "medium",
+		},
 	},
 	{ timestamps: true }
 );
