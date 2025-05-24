@@ -7,17 +7,47 @@ import "./TodoPage.css";
 const TodoPage = () => {
 	const [lists, setLists] = useState(mockLists);
 
-	const toggleTodo = (listId, todoId) => {
+	const handleToggleTodo = (listId, todoId) => {
 		setLists((prev) =>
-			// go through lists
+			// Go through lists
 			prev.map((list) =>
 				list.id === listId
 					? {
 							...list,
-							// go through items in the rigth list
+							// Go through items in the rigth list
 							todos: list.todos.map((todo) =>
 								todo.id === todoId ? { ...todo, done: !todo.done } : todo
 							),
+					  }
+					: list
+			)
+		);
+	};
+
+	const handleAddTodo = (listId, todoText) => {
+		setLists((prev) =>
+			// Go through lists
+			prev.map((list) =>
+				list.id === listId
+					? {
+							...list,
+							// Add at end of correct list
+							todos: [...list.todos, { text: todoText, done: false }],
+					  }
+					: list
+			)
+		);
+	};
+
+	const handleDeleteTodo = (listId, todoId) => {
+		setLists((prev) =>
+			// Go through lists
+			prev.map((list) =>
+				list.id === listId
+					? {
+							...list,
+							// Remove specified todo
+							todos: list.todos.filter((todo) => todo.id !== todoId),
 					  }
 					: list
 			)
@@ -31,7 +61,13 @@ const TodoPage = () => {
 					<div className="col-md-4 mb-4" key={list.id}>
 						<TodoList
 							list={list}
-							onToggleTodo={(todoId) => toggleTodo(list.id, todoId)}
+							onToggleTodo={(todoId) => handleToggleTodo(list.id, todoId)}
+							onAddTodo={(listId, newTodoText) =>
+								handleAddTodo(listId, newTodoText)
+							}
+							onDeleteTodo={(listId, todoId) =>
+								handleDeleteTodo(listId, todoId)
+							}
 						/>
 					</div>
 				))}

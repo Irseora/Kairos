@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// Generated daily, kept for a week then deleted
+// Updated every time a todo / pomodoro is done
+
 const statsSchema = new mongoose.Schema(
 	{
 		userId: {
@@ -11,14 +14,15 @@ const statsSchema = new mongoose.Schema(
 			type: Date,
 			required: true,
 		},
-		tasksDoneCount: {
+		todosDoneCount: {
 			type: Number,
 			default: 0,
 		},
-		taskIds: [
+		todoListsIds: [
+			// TODO: Make lists ids unique
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "Todo",
+				ref: "TodoList",
 			},
 		],
 		pomodorosDoneCount: {
