@@ -1,37 +1,70 @@
+.todo-card {
+    background-color: var(--accent10);
+    border-color: var(--accent20)
+}
+
 .card-title {
-    color: var(--brown-dark)
+    color: var(--text)
 }
 
-.todo {
-    cursor: pointer;
-    color: var(--brown-dark)
+/* Set card max height */
+.todo-card ul {
+    max-height: 500px;
+    overflow-y: auto;
 }
 
-.todo-done {
+.todo-card .list-group-item {
+    border: none;
+    border-radius: 0.8rem;
+    background-color: transparent;
     cursor: pointer;
+    color: var(--text);
+}
+
+/* Hide delete button */
+.delete-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Show delete button on hover */
+.list-group-item:hover .delete-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.todo:hover,
+.todo-done:hover {
+    background-color: var(--accent5)
+}
+
+/* Strike through done todos */
+.todo-done span {
+    color: var(--text-muted);
     text-decoration: line-through;
-    color: var(--brown-lighter)
 }
 
-.todo-span {
-    cursor: pointer;
-    flex-grow: 1
+/* Break up long todos on multiple lines */
+.list-group-item span {
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    flex: 1;
 }
 
-input {
-    color: var(--brown-dark)
+.todo-input {
+    color: var(--text-default) !important;
+    background-color: var(--accent5);
+    border-color: var(--accent10)
 }
 
-.task-input {
-    color: var(--brown-dark) !important
-}
-
-.task-input::placeholder {
-    color: var(--brown-lighter);
+.todo-input::placeholder {
+    color: var(--text-muted);
     opacity: 0.5;
 }
 
-.task-input:focus {
-    border-color: var(--brown-dark);
-    box-shadow: 0 0 0 0.2rem rgba(100, 74, 7, 0.25)
+.todo-input:focus {
+    background-color: var(--accent5);
+    border-color: var(--accent5);
+    box-shadow: 0 0 0 0.2rem hsl(314, 26%, 22%, 30%);
 }

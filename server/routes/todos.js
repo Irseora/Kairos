@@ -3,51 +3,46 @@ import Todo from "../models/Todo.js";
 
 const router = express.Router();
 
-// Get list of all todos
-router.get("/", async (req, res) => {
-	try {
-		const todos = await Todo.find().sort({ createdAt: -1 });
-		res.status(200).json(todos);
-	} catch (err) {
-		res.status(500).json({ error: "Failed to fetch todos!" });
-	}
-});
-
-// Add a new todo to list
+// Create todo
 router.post("/", async (req, res) => {
 	try {
-		console.log(req.body.text);
-		const toAdd = new Todo({ text: req.body.text });
-		const saved = await toAdd.save();
-		console.log();
-		res.status(201).json(saved);
+		const todo = new Todo(req.body);
+		const savedTodo = await todo.save();
+		res.status(201).json(savedTodo);
 	} catch (err) {
-		res.status(400).json({ error: "Failed to create todo!" });
+		res.status(400).json({ error: err.message });
 	}
 });
 
-// Toggle done-ness of a given todo
+// Get all todos from list
+router.get("/list/:id", async (req, res) => {
+	try {
+		const todos = await Todo.find({ todoListId: req.params.id });
+		res.json(todos);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+});
+
+// Update todo
 router.put("/:id", async (req, res) => {
 	try {
-		const toToggle = await Todo.findById(req.params.id);
-		if (!toToggle)
-			return res.status(404).json({ error: "Could not find todo!" });
-
-		toToggle.done = !toToggle.done;
-		const saved = await toToggle.save();
-		res.status(200).json(saved);
+		const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {
+			new: true,
+		});
+		res.json(updatedTodo);
 	} catch (err) {
-		res.status(500).json({ error: "Failed to update todo!" });
+		res.status(400).json({ error: err.message });
 	}
 });
 
-// Delete a todo
-router.delete("/:id", async (req, res) => {
+// Delete todo
+router.delete("/", async (req, res) => {
 	try {
 		await Todo.findByIdAndDelete(req.params.id);
-		res.status(200).json({ message: "Todo deleted" });
+		res.status(204).end();
 	} catch (err) {
-		res.status(500).json({ error: "Failed to delete todo!" });
+		res.status(500).json({ error: err.message });
 	}
 });
 

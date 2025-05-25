@@ -1,5 +1,5 @@
 # Secrets shhh
-.env
+**/.env
 
 # Node
 **/package-lock.json

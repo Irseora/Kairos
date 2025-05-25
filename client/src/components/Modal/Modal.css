@@ -1,0 +1,61 @@
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal {
+    display: block;
+    position: relative;
+    z-index: 1001;
+
+    background-color: var(--bg);
+    color: var(--text);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+
+    padding: 2rem;
+    border-radius: 1rem;
+
+    max-width: 400px;
+    width: 90%;
+
+    max-height: 27%;
+    overflow-y: auto;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.modal-actions .btn:hover {
+    background-color: var(--accent10);
+    border-radius: 0.8rem
+}
+
+.modal-body {
+    margin-top: 1rem;
+}
+
+.modal-body input {
+    color: var(--text-default) !important;
+    background-color: var(--accent5);
+    border-color: var(--accent10)
+}
+
+.modal-body input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.modal-body input:focus {
+    background-color: var(--accent5);
+    border-color: var(--accent5);
+    box-shadow: 0 0 0 0.2rem hsl(314, 26%, 22%, 30%);
+}

@@ -3,10 +3,13 @@ import mongoose from "mongoose";
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
+import cors from "cors";
 import { fileURLToPath } from "url";
 
 // Import extra routes
 import todoRoutes from "./routes/todos.js";
+import todoListRoutes from "./routes/todoLists.js";
+import authRoutes from "./routes/googleAuth.js";
 
 // Load environment variables
 dotenv.config({ path: "../.env" });
@@ -24,13 +27,23 @@ app.use(
 	})
 );
 app.use(bodyParser.json());
+app.use(express.json());
+
+// Cross-Origin Resource Sharing (for diff ports during dev)
+app.use(
+	cors({
+		origin: "http://localhost:5173",
+		credentials: true,
+	})
+);
 
 // Static files path
-app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// Extra routes
+// Use extra routes
 app.use("/api/todos", todoRoutes);
+app.use("/api/todo-lists", todoListRoutes);
+app.use("/api/auth", authRoutes);
 
 // Index
 app.get("/", (req, res) => {

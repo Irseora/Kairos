@@ -21,7 +21,14 @@ const todoListSchema = new mongoose.Schema(
 			default: false,
 		},
 	},
-	{ timestamps: true }
+	{ timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+// Virtual field for fetching all todos inside list
+todoListSchema.virtual("todos", {
+	ref: "Todo",
+	localField: "_id",
+	foreignField: "todoListId",
+});
 
 export default mongoose.model("TodoList", todoListSchema, "todo_lists");

@@ -1,0 +1,8 @@
+.container {
+    padding-top: 80px;
+}
+
+.new-todo-card {
+    height: 300px;
+    background-color: var(--accent10)
+}

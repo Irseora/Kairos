@@ -1,4 +1,10 @@
 nav {
-    background-color: #FFDBDB;
+    background-color: var(--accent50);
+    color: var(--text)
+}
+
+nav .nav-link:hover {
+    background-color: var(--accent10);
+    border-radius: 0.8rem;
 }
 

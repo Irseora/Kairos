@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
-import BunnyIcon from "../../assets/icons/BunnyIcon";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import PostitIcon from "../../assets/icons/PostitIcon";
 import "./Navbar.css";
 
 const navItems = [
@@ -10,28 +11,50 @@ const navItems = [
 ];
 
 const Navbar = () => {
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	const { user, setUser } = useAuth();
+
+	const isLoginPage = location.pathname === "/";
+
 	return (
 		<nav className="navbar navbar-expand fixed-top">
 			<div className="container-fluid">
 				<NavLink className="navbar-brand" to="/">
-					<BunnyIcon />
+					<PostitIcon size="36" color="#2a272c" />
 				</NavLink>
 
-				<div className="navbar-nav ms-auto d-flex flex-row gap-4">
-					{navItems.map(({ label, path }) => (
+				{/* Show if not on login page & user loged in */}
+				{!isLoginPage && user && (
+					<div className="navbar-nav ms-auto d-flex flex-row gap-4">
+						{navItems.map(({ label, path }) => (
+							<NavLink
+								className="nav-link"
+								key={path}
+								to={path}
+								// Highlight if its current active page
+								style={({ isActive }) => ({
+									backgroundColor: isActive ? "var(--accent30)" : "",
+									borderRadius: isActive ? "0.8rem" : "",
+								})}
+							>
+								{label}
+							</NavLink>
+						))}
 						<NavLink
 							className="nav-link"
-							key={path}
-							to={path}
-							// Highlight if its current active page
-							style={({ isActive }) => ({
-								backgroundColor: isActive ? "#FFC6C6" : "",
-							})}
+							to="#"
+							onClick={(e) => {
+								e.preventDefault();
+								setUser(null);
+								navigate("/");
+							}}
 						>
-							{label}
+							Log Out
 						</NavLink>
-					))}
-				</div>
+					</div>
+				)}
 			</div>
 		</nav>
 	);
