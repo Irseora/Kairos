@@ -56,54 +56,93 @@ const TodoPage = () => {
 		fetchLists();
 	}, [user]);
 
-	// TODO:
-	const handleToggleTodo = (listId, todoId) => {
-		setLists((prev) =>
-			// Go through lists
-			prev.map((list) =>
-				list._id === listId
-					? {
-							...list,
-							// Go through items in the rigth list
-							todos: list.todos.map((todo) =>
-								todo._id === todoId ? { ...todo, done: !todo.done } : todo
-							),
-					  }
-					: list
-			)
-		);
+	const handleToggleTodo = async (listId, todoId) => {
+		const currentList = lists.find((list) => list._id === listId);
+		const currentTodo = currentList?.todos.find((todo) => todo._id === todoId);
+
+		if (!currentTodo) return;
+
+		const newDone = !currentTodo.done;
+
+		try {
+			await fetch(`http://localhost:3000/api/todos/${todoId}`, {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ done: newDone }),
+			});
+
+			setLists((prev) =>
+				// Go through lists
+				prev.map((list) =>
+					list._id === listId
+						? {
+								...list,
+								// Go through items in the rigth list
+								todos: list.todos.map((todo) =>
+									todo._id === todoId ? { ...todo, done: newDone } : todo
+								),
+						  }
+						: list
+				)
+			);
+		} catch (err) {
+			console.error("Failed to toggle todo:", err);
+		}
 	};
 
-	// TODO:
-	const handleAddTodo = (listId, todoText) => {
-		setLists((prev) =>
-			// Go through lists
-			prev.map((list) =>
-				list._id === listId
-					? {
-							...list,
-							// Add at end of correct list
-							todos: [...list.todos, { text: todoText, done: false }],
-					  }
-					: list
-			)
-		);
+	const handleAddTodo = async (listId, todoText) => {
+		if (!todoText.trim()) return;
+
+		try {
+			const res = await fetch("http://localhost:3000/api/todos", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					todoListId: listId,
+					text: todoText,
+				}),
+			});
+
+			const newTodo = await res.json();
+
+			setLists((prev) =>
+				// Go through lists
+				prev.map((list) =>
+					list._id === listId
+						? {
+								...list,
+								// Add at end of correct list
+								todos: [...list.todos, newTodo],
+						  }
+						: list
+				)
+			);
+		} catch (err) {
+			console.error("Failed to add todo:", err);
+		}
 	};
 
-	// TODO:
-	const handleDeleteTodo = (listId, todoId) => {
-		setLists((prev) =>
-			// Go through lists
-			prev.map((list) =>
-				list._id === listId
-					? {
-							...list,
-							// Remove specified todo
-							todos: list.todos.filter((todo) => todo._id !== todoId),
-					  }
-					: list
-			)
-		);
+	const handleDeleteTodo = async (listId, todoId) => {
+		try {
+			await fetch(`http://localhost:3000/api/todos/${todoId}`, {
+				method: "DELETE",
+			});
+
+			setLists((prev) =>
+				// Go through lists
+				prev.map((list) =>
+					list._id === listId
+						? {
+								...list,
+								// Remove specified todo
+								todos: list.todos.filter((todo) => todo._id !== todoId),
+						  }
+						: list
+				)
+			);
+		} catch (err) {
+			console.error("Failed to delete todo:", err);
+		}
 	};
 
 	const handleDeleteList = async (listId) => {

@@ -13,13 +13,11 @@ const TodoList = ({
 }) => {
 	const [newTodoText, setNewTodoText] = useState();
 
-	// Handler for adding new todo
-	const handleAddTodoClick = () => {
-		// Check if input is empty
-		if (newTodoText.trim()) {
-			onAddTodo(list.id, newTodoText);
-			setNewTodoText("");
-		}
+	const handleAdd = () => {
+		if (!newTodoText.trim()) return;
+
+		onAddTodo(list._id, newTodoText);
+		setNewTodoText("");
 	};
 
 	return (
@@ -31,18 +29,18 @@ const TodoList = ({
 					<ul className="list-group ">
 						{list.todos.map((todo) => (
 							<li
-								key={todo.id}
+								key={todo._id}
 								className={`list-group-item d-flex justify-content-between align-items-center ${
 									todo.done ? "todo-done" : "todo"
 								}`}
-								onClick={() => onToggleTodo(todo.id)}
+								onClick={() => onToggleTodo(todo._id)}
 							>
 								<span>{todo.text}</span>
 								<button
 									className="btn delete-button"
 									onClick={(e) => {
 										e.stopPropagation(); // Don't toggle todo when deleteing
-										onDeleteTodo(list.id, todo.id);
+										onDeleteTodo(list._id, todo._id);
 									}}
 								>
 									<EraserIcon size="18" color="#2a272c" />
@@ -59,11 +57,11 @@ const TodoList = ({
 								onKeyDown={(e) => {
 									if (e.key === "Enter") {
 										e.preventDefault();
-										handleAddTodoClick();
+										handleAdd();
 									}
 								}}
 							></input>
-							<button className="btn" onClick={handleAddTodoClick}>
+							<button className="btn" onClick={handleAdd}>
 								<MagicWandIcon size="30" color="#2a272c" />
 							</button>
 						</li>
