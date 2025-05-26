@@ -1,19 +1,4 @@
-.container {
+.auth-container {
     padding-top: 180px;
-}
-
-.auth-button {
-    border: 1px solid var(--accent40);
-    background-color: var(--accent20)
-}
-
-.auth-button:hover {
-    border: 1px solid var(--accent40);
-    background-color: var(--accent30);
-}
-
-.hidden {
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
+    width: 250px
 }

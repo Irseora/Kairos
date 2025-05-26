@@ -21,8 +21,12 @@ const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand fixed-top">
 			<div className="container-fluid">
-				<NavLink className="navbar-brand" to="/">
+				<NavLink
+					className="navbar-brand d-flex align-items-center gap-3"
+					to={user ? "/todos" : "/"}
+				>
 					<PostitIcon size="36" color="#2a272c" />
+					Kairos
 				</NavLink>
 
 				{/* Show if not on login page & user loged in */}

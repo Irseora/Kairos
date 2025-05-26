@@ -10,8 +10,8 @@ const AuthPage = () => {
 
 	return (
 		<>
-			<div className="container">
-				<h3 className="text-center">Sign In</h3>
+			<div className="container auth-container">
+				<h3 className="text-center pb-2">Sign In</h3>
 
 				{/* <div className="d-flex justify-content-center">
 					<button
@@ -24,6 +24,7 @@ const AuthPage = () => {
 				</div> */}
 
 				<GoogleLogin
+					shape="pill"
 					onSuccess={async (credentialResponse) => {
 						const id_token = credentialResponse.credential;
 
