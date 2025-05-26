@@ -6,6 +6,9 @@
     align-items: center;
     justify-content: center;
     z-index: 999;
+
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .modal {
@@ -21,9 +24,10 @@
     border-radius: 1rem;
 
     max-width: 400px;
-    width: 90%;
+    width: 100%;
 
-    max-height: 27%;
+    max-height: 90vh;
+    height: auto;
     overflow-y: auto;
 }
 
