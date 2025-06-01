@@ -35,7 +35,7 @@ const TodoPage = () => {
 
 	// ------------------------ ACTIONS -----------------------
 
-	// Load lists for current user from db
+	// Load lists for current user from db when user changes
 	useEffect(() => {
 		const fetchLists = async () => {
 			if (!user?._id) return;
@@ -191,8 +191,6 @@ const TodoPage = () => {
 		if (!newListTitle.trim()) return;
 
 		try {
-			// console.log(user._id, newListTitle);
-
 			const res = await fetch("http://localhost:3000/api/todo-lists", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -304,6 +302,7 @@ const TodoPage = () => {
 				/>
 			)}
 
+			{/* Delete list modal */}
 			<Modal
 				isOpen={showDeleteModal}
 				title="Delete List?"
@@ -314,6 +313,7 @@ const TodoPage = () => {
 				<p>Are you sure you want to delete this list?</p>
 			</Modal>
 
+			{/* Rename list modal */}
 			<Modal
 				isOpen={showRenameModal}
 				title="Rename List?"
@@ -330,6 +330,7 @@ const TodoPage = () => {
 				/>
 			</Modal>
 
+			{/* Add new list modal */}
 			<Modal
 				isOpen={showAddModal}
 				title="Create New List?"
