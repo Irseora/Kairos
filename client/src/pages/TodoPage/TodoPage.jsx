@@ -263,7 +263,7 @@ const TodoPage = () => {
 							>
 								<div className="card-body d-flex align-items-center justify-content-center">
 									<span>
-										<QuillIcon size="64" color="#2a272c" />
+										<QuillIcon size="64" color="#011627" />
 									</span>
 								</div>
 							</div>

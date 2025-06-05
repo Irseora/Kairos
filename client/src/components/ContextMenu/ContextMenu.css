@@ -1,9 +1,8 @@
 .context-menu {
     position: absolute;
-    background-color: var(--bg);
-    border: 2 solid var(--accent);
+    background-color: var(--secondary);
     border-radius: 0.5rem;
-    border-width: 2px;
+    border: 1px solid var(--accent);
     padding: 0.5rem;
     list-style: none;
     z-index: 1000;
@@ -12,10 +11,10 @@
 .context-menu li {
     padding: 0.5rem 1rem;
     cursor: pointer;
+    color: var(--text);
 }
 
 .context-menu li:hover {
-    background-color: var(--accent10);
+    background-color: var(--overlay5);
     border-radius: 0.8rem;
-    color: var(--text)
 }

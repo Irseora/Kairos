@@ -1,6 +1,6 @@
 .todo-card {
-    background-color: var(--accent10);
-    border-color: var(--accent20)
+    background-color: var(--secondary);
+    border: 1px solid var(--accent);
 }
 
 .card-title {
@@ -35,7 +35,7 @@
 
 .todo:hover,
 .todo-done:hover {
-    background-color: var(--accent5)
+    background-color: var(--overlay5)
 }
 
 /* Strike through done todos */
@@ -53,9 +53,9 @@
 }
 
 .todo-input {
-    color: var(--text-default) !important;
-    background-color: var(--accent5);
-    border-color: var(--accent10)
+    color: var(--text) !important;
+    background-color: var(--background);
+    border: 1px solid var(--accent);
 }
 
 .todo-input::placeholder {
@@ -64,7 +64,12 @@
 }
 
 .todo-input:focus {
-    background-color: var(--accent5);
-    border-color: var(--accent5);
-    box-shadow: 0 0 0 0.2rem hsl(314, 26%, 22%, 30%);
+    background-color: var(--background);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 0 0.2rem var(--overlay10);
+}
+
+.add-task-btn:hover {
+    border-radius: 50%;
+    background-color: var(--overlay5);
 }

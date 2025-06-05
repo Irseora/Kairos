@@ -4,9 +4,11 @@
 
 .new-todo-card {
     height: 300px;
-    background-color: var(--accent10)
+    background-color: var(--secondary);
+    border: 1px solid var(--accent)
 }
 
 .new-todo-card:hover {
-    background-color: var(--accent15);
+    background-blend-mode: darken;
+    background-color: var(--overlay20);
 }

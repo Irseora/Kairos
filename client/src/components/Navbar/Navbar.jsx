@@ -5,7 +5,7 @@ import "./Navbar.css";
 
 const navItems = [
 	{ label: "To-Do Lists", path: "/todos" },
-	{ label: "Calendar", path: "/calendar" },
+	{ label: "Calendar", path: "/calendar/week" },
 	{ label: "Pomodoro", path: "/pomodoro" },
 	{ label: "Stats", path: "/stats" },
 ];
@@ -25,7 +25,7 @@ const Navbar = () => {
 					className="navbar-brand d-flex align-items-center gap-3"
 					to={user ? "/todos" : "/"}
 				>
-					<PostitIcon size="36" color="#2a272c" />
+					<PostitIcon size="36" color="#011627" />
 					Kairos
 				</NavLink>
 
@@ -39,7 +39,7 @@ const Navbar = () => {
 								to={path}
 								// Highlight if its current active page
 								style={({ isActive }) => ({
-									backgroundColor: isActive ? "var(--accent30)" : "",
+									backgroundColor: isActive ? "var(--overlay15)" : "",
 									borderRadius: isActive ? "0.8rem" : "",
 								})}
 							>

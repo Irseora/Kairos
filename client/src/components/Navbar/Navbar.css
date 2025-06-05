@@ -1,9 +1,9 @@
 nav {
-    background-color: var(--accent50);
+    background-color: var(--primary);
     color: var(--text)
 }
 
 nav .nav-link:hover {
-    background-color: var(--accent10);
+    background-color: var(--overlay5);
     border-radius: 0.8rem;
 }

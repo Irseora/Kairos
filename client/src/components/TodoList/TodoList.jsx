@@ -43,7 +43,7 @@ const TodoList = ({
 										onDeleteTodo(list._id, todo._id);
 									}}
 								>
-									<EraserIcon size="18" color="#2a272c" />
+									<EraserIcon size="18" color="#011627" />
 								</button>
 							</li>
 						))}
@@ -61,8 +61,8 @@ const TodoList = ({
 									}
 								}}
 							></input>
-							<button className="btn" onClick={handleAdd}>
-								<MagicWandIcon size="30" color="#2a272c" />
+							<button className="btn add-task-btn" onClick={handleAdd}>
+								<MagicWandIcon size="30" color="#011627" />
 							</button>
 						</li>
 					</ul>

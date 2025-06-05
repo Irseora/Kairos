@@ -1,0 +1,26 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+.calendar-header, .time-row {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr);
+}
+
+.time-column-header, .day-header, .time-cell, .time-label {
+    border: 1px solid var(--text-muted)
+}
+
+.day-header, .time-label {
+    background-color: var(--accent20);
+    font-weight: bold;
+    min-height: 30px;
+}
+
+.time-label {
+    padding-right: 0.5rem;
+}
+
+.time-cell {
+    min-height: 40px;
+}
