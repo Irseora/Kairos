@@ -14,9 +14,9 @@ const TodoList = ({
 	const [newTodoText, setNewTodoText] = useState("");
 
 	const handleAdd = () => {
-		if (!newTodoText.trim()) return;
+		if (!newTodoText.trim() || !list?._id) return;
 
-		onAddTodo(list._id, newTodoText);
+		onAddTodo(list._id, newTodoText.trim());
 		setNewTodoText("");
 	};
 
