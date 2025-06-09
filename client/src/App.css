@@ -26,6 +26,29 @@
     --royal-scepter: #795663;
 
 
+    --olive-petal: #A3A380;
+    --golden-clover: #D7CE93;
+    --artic-daisy: #EFEBCE;
+    --rose-blush: #D8A48F;
+    --peach-blossom: #BB8588;
+
+    --green: #C6C0B0;
+    --cream: #d6c8bc;
+    --peach: #CB977F;
+    --lavender: #9E8185;
+    --blue: #9AA0A0;
+
+
+    --mauve-brown: #483434;
+    --rose-ebony: #6B4F4F;
+
+
+    --wenge: #624F55;
+    --rosy-brown: #B1968F;
+    --champagne-pink: #e0c4bc;
+
+
+
     /* -------------------------------------------- */
 
 
@@ -37,12 +60,12 @@
     --blue-noir: #011627;
 
     
-    --background: var(--pastel-gray);
+    --background: var(--champagne-pink);
 
 
-    --primary: var(--artichoke);
-    --secondary: var(--laurel-green);
-    --accent: var(--kombu-green);
+    --primary: var(--wenge);
+    --secondary: var(--rosy-brown);
+    --accent: var(--mauve-brown);
 
 
     --overlay5: hsl(207, 95%, 8%, 5%);
@@ -58,7 +81,7 @@
     --overlay90: hsl(207, 95%, 8%, 90%);
 
 
-    --text: var(--blue-noir);
+    --text: #130d0d;
     --text-muted: #01162762;
 
 

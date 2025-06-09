@@ -25,7 +25,7 @@ const Navbar = () => {
 					className="navbar-brand d-flex align-items-center gap-3"
 					to={user ? "/todos" : "/"}
 				>
-					<PostitIcon size="36" color="#011627" />
+					<PostitIcon size="36" color="#130d0d" />
 					Kairos
 				</NavLink>
 

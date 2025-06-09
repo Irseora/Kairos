@@ -1,9 +1,17 @@
 nav {
     background-color: var(--primary);
+}
+
+nav .nav-link {
     color: var(--text)
 }
 
 nav .nav-link:hover {
+    color: var(--text);
     background-color: var(--overlay5);
     border-radius: 0.8rem;
+}
+
+.navbar-brand {
+    color: var(--text)
 }
