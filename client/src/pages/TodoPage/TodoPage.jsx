@@ -89,7 +89,7 @@ const TodoPage = () => {
 	};
 
 	const handleAddTodo = async (listId, todoText) => {
-		if (!todoText.trim()) return;
+		if (!todoText.trim() || typeof todo.text !== "string") return;
 
 		try {
 			const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/todos`, {
