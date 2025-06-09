@@ -42,7 +42,7 @@ const TodoPage = () => {
 
 			try {
 				const res = await fetch(
-					`http://localhost:3000/api/todo-lists/user/${user._id}`
+					`${import.meta.env.VITE_API_BASE_URL}/todo-lists/user/${user._id}`
 				);
 				const data = await res.json();
 				setLists(data);
@@ -65,7 +65,7 @@ const TodoPage = () => {
 		const newDone = !currentTodo.done;
 
 		try {
-			await fetch(`http://localhost:3000/api/todos/${todoId}`, {
+			await fetch(`${import.meta.env.VITE_API_BASE_URL}/todos/${todoId}`, {
 				method: "PATCH",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ done: newDone }),
@@ -94,7 +94,7 @@ const TodoPage = () => {
 		if (!todoText.trim()) return;
 
 		try {
-			const res = await fetch("http://localhost:3000/api/todos", {
+			const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/todos`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
@@ -124,7 +124,7 @@ const TodoPage = () => {
 
 	const handleDeleteTodo = async (listId, todoId) => {
 		try {
-			await fetch(`http://localhost:3000/api/todos/${todoId}`, {
+			await fetch(`${import.meta.env.VITE_API_BASE_URL}/todos/${todoId}`, {
 				method: "DELETE",
 			});
 
@@ -147,7 +147,7 @@ const TodoPage = () => {
 
 	const handleDeleteList = async (listId) => {
 		try {
-			await fetch(`http://localhost:3000/api/todo-lists/${listId}`, {
+			await fetch(`${import.meta.env.VITE_API_BASE_URL}/todo-lists/${listId}`, {
 				method: "DELETE",
 			});
 
@@ -164,7 +164,7 @@ const TodoPage = () => {
 
 		try {
 			const res = await fetch(
-				`http://localhost:3000/api/todo-lists/${listId}`,
+				`${import.meta.env.VITE_API_BASE_URL}/todo-lists/${listId}`,
 				{
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
@@ -191,14 +191,17 @@ const TodoPage = () => {
 		if (!newListTitle.trim()) return;
 
 		try {
-			const res = await fetch("http://localhost:3000/api/todo-lists", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					userId: user._id,
-					title: newListTitle,
-				}),
-			});
+			const res = await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/todo-lists`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						userId: user._id,
+						title: newListTitle,
+					}),
+				}
+			);
 
 			const createdList = await res.json();
 			if (!createdList.todos) createdList.todos = [];

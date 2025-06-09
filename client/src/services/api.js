@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 // Load environment variables
 dotenv.config({ path: "../../../.env" });
 
-const baseApiUrl = process.env.BASE_URL;
+const baseApiUrl = process.env.API_BASE_URL;
 
 export async function apiFetch(endpoint, options = {}) {
 	const res = await fetch(`${baseApiUrl}${endpoint}`, {

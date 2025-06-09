@@ -46,7 +46,7 @@ const WeeklyCalendarPage = () => {
 
 			try {
 				const res = await fetch(
-					`http://localhost:3000/api/events/user/${
+					`${import.meta.env.VITE_API_BASE_URL}/events/user/${
 						user._id
 					}?weekStart=${currentWeekStart.toISOString()}`
 				);
@@ -93,7 +93,7 @@ const WeeklyCalendarPage = () => {
 		try {
 			// Add event
 			if (modalMode === "create") {
-				const res = await fetch("http://localhost:3000/api/events", {
+				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/events`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ ...eventPayload, userId: user._id }),
@@ -104,7 +104,7 @@ const WeeklyCalendarPage = () => {
 			} else {
 				// Edit event
 				const res = await fetch(
-					`http://localhost:3000/api/events/${modalData._id}`,
+					`${import.meta.env.VITE_API_BASE_URL}/events/${modalData._id}`,
 					{
 						method: "PUT",
 						headers: { "Content-Type": "application/json" },
@@ -127,9 +127,12 @@ const WeeklyCalendarPage = () => {
 
 	const handleDeleteEvent = async () => {
 		try {
-			await fetch(`http://localhost:3000/api/events/${contextMenu.event._id}`, {
-				method: "DELETE",
-			});
+			await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/events/${contextMenu.event._id}`,
+				{
+					method: "DELETE",
+				}
+			);
 			setEvents((prev) =>
 				prev.filter((event) => event._id !== contextMenu.event._id)
 			);
@@ -176,7 +179,7 @@ const WeeklyCalendarPage = () => {
 
 		try {
 			const res = await fetch(
-				`http://localhost:3000/api/events/${draggedEvent._id}`,
+				`${import.meta.env.VITE_API_BASE_URL}/events/${draggedEvent._id}`,
 				{
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
@@ -237,15 +240,18 @@ const WeeklyCalendarPage = () => {
 			if (!resizingEvent) return;
 
 			try {
-				await fetch(`http://localhost:3000/api/events/${resizingEvent._id}`, {
-					method: "PUT",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						...resizingEvent,
-						startTime: new Date(resizingEvent.startTime).toISOString(),
-						endTime: new Date(resizingEvent.endTime).toISOString(),
-					}),
-				});
+				await fetch(
+					`${import.meta.env.VITE_API_BASE_URL}/events/${resizingEvent._id}`,
+					{
+						method: "PUT",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							...resizingEvent,
+							startTime: new Date(resizingEvent.startTime).toISOString(),
+							endTime: new Date(resizingEvent.endTime).toISOString(),
+						}),
+					}
+				);
 			} catch (err) {
 				console.error("Failed to resize evenet");
 			} finally {
