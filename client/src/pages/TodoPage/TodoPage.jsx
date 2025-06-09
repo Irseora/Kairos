@@ -202,7 +202,7 @@ const TodoPage = () => {
 			);
 
 			const createdList = await res.json();
-			// if (!createdList.todos) createdList.todos = [];
+			if (!createdList.todos) createdList.todos = [];
 
 			setLists((prev) => [...prev, createdList]);
 		} catch (err) {
