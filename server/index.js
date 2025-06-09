@@ -31,9 +31,19 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 // Cross-Origin Resource Sharing (for diff ports during dev)
+const allowedOrigins = [
+	"http://localhost:5173",
+	"https://kairos-frontend-fas7.onrender.com",
+];
 app.use(
 	cors({
-		origin: "http://localhost:5173",
+		origin: (origin, callback) => {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(new Error("CORS not allowed for this origin"));
+			}
+		},
 		credentials: true,
 	})
 );
