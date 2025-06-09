@@ -9,10 +9,9 @@ import "./TodoPage.css";
 const TodoPage = () => {
 	const { user } = useAuth();
 
-	// ------------------------ STATES ------------------------
-
 	const [lists, setLists] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [creatingList, setCreatingList] = useState(false);
 
 	const [contextMenu, setContextMenu] = useState({
 		visible: false,
@@ -30,8 +29,6 @@ const TodoPage = () => {
 
 	const [showAddModal, setShowAddModal] = useState(false);
 	const [newListTitle, setNewListTitle] = useState("");
-
-	// ------------------------ ACTIONS -----------------------
 
 	// Load lists for current user from db when user changes
 	useEffect(() => {
@@ -89,7 +86,7 @@ const TodoPage = () => {
 	};
 
 	const handleAddTodo = async (listId, todoText) => {
-		if (typeof todoText !== "string" || !todoText.trim()) return;
+		if (!listId || typeof todoText !== "string" || !todoText.trim()) return;
 
 		try {
 			const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/todos`, {
@@ -186,7 +183,8 @@ const TodoPage = () => {
 	};
 
 	const handleAddList = async () => {
-		if (!newListTitle.trim()) return;
+		if (!newListTitle.trim() || creatingList) return;
+		setCreatingList(true);
 
 		try {
 			const res = await fetch(
@@ -204,12 +202,16 @@ const TodoPage = () => {
 			const createdList = await res.json();
 			if (!createdList.todos) createdList.todos = [];
 
-			setLists((prev) => [...prev, createdList]);
+			setLists((prev) => {
+				if (prev.some((list) => list._id === createdList._id)) return prev;
+				return [...prev, createdList];
+			});
 		} catch (err) {
 			console.error("Failed to create list:", err);
 		} finally {
 			setShowAddModal(false);
 			setNewListTitle("");
+			setCreatingList(false);
 		}
 	};
 
@@ -224,7 +226,10 @@ const TodoPage = () => {
 		return () => window.removeEventListener("click", handleClick);
 	}, [contextMenu]);
 
-	// -------------------------------------------------------
+	const uniqueLists = lists.filter(
+		(list, index, self) =>
+			list._id && index === self.findIndex((l) => l._id === list._id)
+	);
 
 	return (
 		<>
@@ -233,7 +238,7 @@ const TodoPage = () => {
 			) : (
 				<div className="container">
 					<div className="row">
-						{lists.map((list) => (
+						{uniqueLists.map((list) => (
 							<div className="col-md-4 mb-4" key={list._id}>
 								<TodoList
 									list={list}
