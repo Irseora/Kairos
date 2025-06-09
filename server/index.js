@@ -19,7 +19,7 @@ dotenv.config({ path: "../.env" });
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // Body parser
 app.use(
@@ -37,7 +37,7 @@ const allowedOrigins = [
 ];
 app.use(
 	cors({
-		origin: (origin, callback) => {
+		origin: function (origin, callback) {
 			if (!origin || allowedOrigins.includes(origin)) {
 				callback(null, true);
 			} else {
