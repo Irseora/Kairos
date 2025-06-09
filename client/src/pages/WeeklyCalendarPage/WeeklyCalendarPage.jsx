@@ -268,6 +268,7 @@ const WeeklyCalendarPage = () => {
 	return (
 		<>
 			<div className="weekly-calendar-page">
+				<h6 className="text-center">{currentWeekStart.getFullYear()}</h6>
 				<div className="week-nav d-flex justify-content-center align-items-center gap-3 mb-3">
 					<button
 						className="btn"
