@@ -71,7 +71,7 @@ const TodoList = ({
 								/>
 								<button
 									className="btn add-task-btn"
-									type="submit"
+									onClick={() => handleAdd(list._id)}
 									disabled={!newTodoTexts[list._id]?.trim()}
 								>
 									<MagicWandIcon size="30" color="#011627" />
