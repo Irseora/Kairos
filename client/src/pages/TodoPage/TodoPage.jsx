@@ -31,8 +31,6 @@ const TodoPage = () => {
 	const [showAddModal, setShowAddModal] = useState(false);
 	const [newListTitle, setNewListTitle] = useState("");
 
-	// --------------------------------------------------------
-
 	// ------------------------ ACTIONS -----------------------
 
 	// Load lists for current user from db when user changes
@@ -204,7 +202,7 @@ const TodoPage = () => {
 			);
 
 			const createdList = await res.json();
-			if (!createdList.todos) createdList.todos = [];
+			// if (!createdList.todos) createdList.todos = [];
 
 			setLists((prev) => [...prev, createdList]);
 		} catch (err) {
