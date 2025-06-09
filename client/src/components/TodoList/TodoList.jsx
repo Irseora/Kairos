@@ -11,15 +11,14 @@ const TodoList = ({
 	onRightClick,
 }) => {
 	const todos = list.todos || [];
-	// const [newTodoText, setNewTodoText] = useState("");
-	const [newTodoTexts, setNewTodoTexts] = useState({});
+	const [newTodoText, setNewTodoText] = useState("");
 
-	const handleAdd = (listId) => {
-		const text = newTodoTexts[listId]?.trim();
-		if (!text) return;
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (!newTodoText.trim()) return;
 
-		onAddTodo(listId, text);
-		setNewTodoText((prev) => ({ ...prev, [listId]: "" }));
+		onAddTodo(list._id, newTodoText.trim());
+		setNewTodoText("");
 	};
 
 	return (
@@ -50,30 +49,15 @@ const TodoList = ({
 							</li>
 						))}
 						<li className="list-group-item">
-							<form
-								className="d-flex"
-								onSubmit={(e) => {
-									e.preventDefault();
-									handleAdd(list._id);
-								}}
-							>
+							<form className="d-flex" onSubmit={handleSubmit}>
 								<input
 									type="text"
 									className="form-control me-2 todo-input"
 									placeholder="Add new todo"
-									value={newTodoTexts[list._id] || ""}
-									onChange={(e) =>
-										setNewTodoTexts((prev) => ({
-											...prev,
-											[list._id]: e.target.value,
-										}))
-									}
+									value={newTodoText}
+									onChange={(e) => setNewTodoText(e.target.value)}
 								/>
-								<button
-									className="btn add-task-btn"
-									onClick={() => handleAdd(list._id)}
-									disabled={!newTodoTexts[list._id]?.trim()}
-								>
+								<button className="btn add-task-btn" type="submit">
 									<MagicWandIcon size="30" color="#011627" />
 								</button>
 							</form>
