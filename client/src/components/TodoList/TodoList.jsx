@@ -10,7 +10,8 @@ const TodoList = ({
 	onDeleteTodo,
 	onRightClick,
 }) => {
-	const [newTodoText, setNewTodoText] = useState();
+	const todos = list.todos || [];
+	const [newTodoText, setNewTodoText] = useState("");
 
 	const handleAdd = () => {
 		if (!newTodoText.trim()) return;
@@ -26,7 +27,7 @@ const TodoList = ({
 					<h4 className="card-title text-center">{list.title}</h4>
 					<hr />
 					<ul className="list-group ">
-						{list.todos.map((todo) => (
+						{todos.map((todo) => (
 							<li
 								key={todo._id}
 								className={`list-group-item d-flex justify-content-between align-items-center ${
@@ -46,23 +47,25 @@ const TodoList = ({
 								</button>
 							</li>
 						))}
-						<li className="list-group-item d-flex">
-							<input
-								type="text"
-								className="form-control me-2 todo-input"
-								placeholder="Add new todo"
-								value={newTodoText || ""}
-								onChange={(e) => setNewTodoText(e.target.value)}
-								onKeyDown={(e) => {
-									if (e.key === "Enter") {
-										e.preventDefault();
-										handleAdd();
-									}
+						<li className="list-group-item">
+							<form
+								className="d-flex"
+								onSubmit={(e) => {
+									e.preventDefault();
+									handleAdd();
 								}}
-							></input>
-							<button className="btn add-task-btn" onClick={handleAdd}>
-								<MagicWandIcon size="30" color="#011627" />
-							</button>
+							>
+								<input
+									type="text"
+									className="form-control me-2 todo-input"
+									placeholder="Add new todo"
+									value={newTodoText || ""}
+									onChange={(e) => setNewTodoText(e.target.value)}
+								/>
+								<button className="btn add-task-btn" type="submit">
+									<MagicWandIcon size="30" color="#011627" />
+								</button>
+							</form>
 						</li>
 					</ul>
 				</div>

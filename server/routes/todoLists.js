@@ -7,7 +7,10 @@ const router = express.Router();
 // Create new list
 router.post("/", async (req, res) => {
 	try {
-		const todoList = new TodoList(req.body);
+		const todoList = new TodoList({
+			...req.body,
+			todos: [],
+		});
 		const savedList = await todoList.save();
 		res.status(201).json(savedList);
 	} catch (err) {
