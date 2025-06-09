@@ -8,11 +8,11 @@
 }
 
 .time-column-header, .day-header, .time-cell, .time-label {
-    border: 1px solid var(--text-muted)
+    border: 1px solid var(--overlay20)
 }
 
 .day-header, .time-label {
-    background-color: var(--accent20);
+    background-color: var(--secondary);
     font-weight: bold;
     min-height: 30px;
 }
@@ -22,5 +22,66 @@
 }
 
 .time-cell {
+    position: relative;
     min-height: 40px;
+    overflow: visible;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.event-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 4px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.event-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--secondary);
+    padding: 2px;
+    font-size: 12px;
+    word-wrap: break-word;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    z-index: 1;
+    cursor: grab;
+    overflow: hidden;
+}
+
+.event-content-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.event-block-content {
+    padding: 4px;
+}
+
+.event-block:active {
+    cursor: grabbing;
+}
+
+.resize-handle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    cursor: ns-resize;
+    background: rgba(0, 0, 0, 0.1)
 }

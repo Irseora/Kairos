@@ -14,6 +14,7 @@ const Modal = ({
 
 	useEffect(() => {
 		const handleKeyDown = (e) => {
+			if (e.key === "Enter") onConfirm();
 			if (e.key === "Escape") onCancel();
 		};
 

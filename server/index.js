@@ -7,9 +7,10 @@ import cors from "cors";
 import { fileURLToPath } from "url";
 
 // Import extra routes
+import authRoutes from "./routes/googleAuth.js";
 import todoRoutes from "./routes/todos.js";
 import todoListRoutes from "./routes/todoLists.js";
-import authRoutes from "./routes/googleAuth.js";
+import eventRoutes from "./routes/events.js";
 
 // Load environment variables
 dotenv.config({ path: "../.env" });
@@ -41,9 +42,10 @@ app.use(
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // Use extra routes
+app.use("/api/auth", authRoutes);
 app.use("/api/todos", todoRoutes);
 app.use("/api/todo-lists", todoListRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/api/events", eventRoutes);
 
 // Index
 app.get("/", (req, res) => {

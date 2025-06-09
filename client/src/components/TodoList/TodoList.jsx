@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MagicWandIcon from "../../assets/icons/MagicWandIcon.jsx";
 import EraserIcon from "../../assets/icons/EraserIcon.jsx";
-import ContextMenu from "../ContextMenu/ContextMenu.jsx";
 import "./TodoList.css";
 
 const TodoList = ({
