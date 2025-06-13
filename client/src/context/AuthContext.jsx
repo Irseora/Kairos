@@ -25,9 +25,9 @@ export const AuthProvider = ({ children }) => {
 	// Save to localStorage when user changes
 	useEffect(() => {
 		if (user) {
-			localStorage.setItem("user", JSON.stringify(user)); // Log in
+			localStorage.setItem("user", JSON.stringify(user));
 		} else {
-			localStorage.removeItem("user"); // Log out
+			localStorage.removeItem("user");
 		}
 	}, [user]);
 

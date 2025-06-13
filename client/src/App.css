@@ -39,10 +39,10 @@
     --blue: #9AA0A0;
 
 
-    --mauve-brown: #483434;
+    
     --rose-ebony: #6B4F4F;
 
-
+    --mauve-brown: #483434;
     --wenge: #624F55;
     --rosy-brown: #B1968F;
     --champagne-pink: #e0c4bc;
@@ -68,21 +68,21 @@
     --accent: var(--mauve-brown);
 
 
-    --overlay5: hsl(207, 95%, 8%, 5%);
-    --overlay10: hsl(207, 95%, 8%, 10%);
-    --overlay15: hsl(207, 95%, 8%, 15%);
-    --overlay20: hsl(207, 95%, 8%, 20%);
-    --overlay30: hsl(207, 95%, 8%, 30%);
-    --overlay40: hsl(207, 95%, 8%, 40%);
-    --overlay50: hsl(207, 95%, 8%, 50%);
-    --overlay60: hsl(207, 95%, 8%, 60%);
-    --overlay70: hsl(207, 95%, 8%, 70%);
-    --overlay80: hsl(207, 95%, 8%, 80%);
-    --overlay90: hsl(207, 95%, 8%, 90%);
+    --overlay5: hsla(0, 0%, 0%, 0.05);
+    --overlay10: hsl(0, 0%, 0%, 10%);
+    --overlay15: hsl(0, 0%, 0%, 15%);
+    --overlay20: hsl(0, 0%, 0%, 20%);
+    --overlay30: hsl(0, 0%, 0%, 30%);
+    --overlay40: hsl(0, 0%, 0%, 40%);
+    --overlay50: hsl(0, 0%, 0%, 50%);
+    --overlay60: hsl(0, 0%, 0%, 60%);
+    --overlay70: hsl(0, 0%, 0%, 70%);
+    --overlay80: hsl(0, 0%, 0%, 80%);
+    --overlay90: hsl(0, 0%, 0%, 90%);
 
 
     --text: #130d0d;
-    --text-muted: #01162762;
+    --text-muted: #130d0d62;
 
 
     --font-general: 'Sour Gummy'

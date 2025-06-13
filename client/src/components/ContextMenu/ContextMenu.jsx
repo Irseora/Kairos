@@ -1,4 +1,3 @@
-import React from "react";
 import "./ContextMenu.css";
 
 const ContextMenu = ({ x, y, onClose, options }) => {
