@@ -89,11 +89,11 @@ const Pomodoro = ({ times }) => {
 	const getTimeForMode = (mode) => {
 		switch (mode) {
 			case "work":
-				return times.work; //* 60;
+				return times.work * 60;
 			case "short-break":
-				return times.shortBreak; //* 60;
+				return times.shortBreak * 60;
 			case "long-break":
-				return times.longBreak; //* 60;
+				return times.longBreak * 60;
 			default:
 				return 1;
 		}
