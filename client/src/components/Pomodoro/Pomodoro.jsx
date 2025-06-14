@@ -26,7 +26,7 @@ const Pomodoro = ({ times }) => {
 		setTimeLeft(getTimeForMode(mode));
 	}, [mode, times]);
 
-	//
+	// Glabal listen for space to start/stop timer
 	useEffect(() => {
 		const handleKeyDown = (e) => {
 			if (e.code === "Space") {
