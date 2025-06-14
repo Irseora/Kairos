@@ -7,6 +7,7 @@ import {
 	differenceInMinutes,
 } from "date-fns";
 import "./WeeklyCalendar.css";
+import { useEffect, useRef } from "react";
 
 const WeeklyCalendar = ({
 	startDate,
@@ -22,6 +23,16 @@ const WeeklyCalendar = ({
 
 	const rowHeight = 40;
 
+	const scrollContainerRef = useRef(null);
+
+	// Scroll to 6AM on mount
+	useEffect(() => {
+		if (scrollContainerRef.current) {
+			const scrollToHour = 6;
+			scrollContainerRef.current.scrollTop = scrollToHour * rowHeight;
+		}
+	}, []);
+
 	// -------------------------------------------------------
 
 	return (
@@ -36,74 +47,78 @@ const WeeklyCalendar = ({
 					))}
 				</div>
 
-				<div className="calendar-body">
-					{hours.map((hour) => (
-						<div className="time-row" key={hour}>
-							<div className="time-label text-end">
-								{`${String(hour).padStart(2, "0")}:00`}
-							</div>
-							{days.map((day, dayIndex) => {
-								const cellDate = new Date(day);
-								cellDate.setHours(hour, 0, 0, 0);
+				<div className="calendar-scrollable-body" ref={scrollContainerRef}>
+					<div className="calendar-body">
+						{hours.map((hour) => (
+							<div className="time-row" key={hour}>
+								<div className="time-label text-end">
+									{`${String(hour).padStart(2, "0")}:00`}
+								</div>
+								{days.map((day, dayIndex) => {
+									const cellDate = new Date(day);
+									cellDate.setHours(hour, 0, 0, 0);
 
-								return (
-									<div
-										className="time-cell"
-										key={dayIndex}
-										onClick={() => onCellClick(dayIndex, hour)}
-										onDragOver={(e) => e.preventDefault()}
-										onDrop={() => onDrop(dayIndex, hour)}
-									>
-										{events.map((event) => {
-											const start =
-												typeof event.startTime === "string"
-													? parseISO(event.startTime)
-													: event.startTime;
-											const end =
-												typeof event.endTime === "string"
-													? parseISO(event.endTime)
-													: event.endTime;
+									return (
+										<div
+											className="time-cell"
+											key={dayIndex}
+											onClick={() => onCellClick(dayIndex, hour)}
+											onDragOver={(e) => e.preventDefault()}
+											onDrop={() => onDrop(dayIndex, hour)}
+										>
+											{events.map((event) => {
+												const start =
+													typeof event.startTime === "string"
+														? parseISO(event.startTime)
+														: event.startTime;
+												const end =
+													typeof event.endTime === "string"
+														? parseISO(event.endTime)
+														: event.endTime;
 
-											if (
-												isSameDay(start, cellDate) &&
-												isSameHour(start, cellDate)
-											) {
-												const durationMins = differenceInMinutes(end, start);
-												const blockHeight = (durationMins / 60) * rowHeight;
+												if (
+													isSameDay(start, cellDate) &&
+													isSameHour(start, cellDate)
+												) {
+													const durationMins = differenceInMinutes(end, start);
+													const blockHeight = (durationMins / 60) * rowHeight;
 
-												return (
-													<div
-														key={event._id || event.title + start.toISOString()}
-														className="event-block"
-														style={{ height: `${blockHeight - 1}px` }}
-														onContextMenu={(e) => {
-															e.preventDefault();
-															onRightClickEvent(event, e.pageX, e.pageY);
-														}}
-														draggable
-														onDragStart={(e) => onDragStart(e, event)}
-													>
-														<div className="event-content-wrapper">
-															<div className="event-block-content">
-																{event.title}
+													return (
+														<div
+															key={
+																event._id || event.title + start.toISOString()
+															}
+															className="event-block"
+															style={{ height: `${blockHeight - 1}px` }}
+															onContextMenu={(e) => {
+																e.preventDefault();
+																onRightClickEvent(event, e.pageX, e.pageY);
+															}}
+															draggable
+															onDragStart={(e) => onDragStart(e, event)}
+														>
+															<div className="event-content-wrapper">
+																<div className="event-block-content">
+																	{event.title}
+																</div>
+
+																<div
+																	className="resize-handle"
+																	onMouseDown={(e) => onResizeStart(e, event)}
+																/>
 															</div>
-
-															<div
-																className="resize-handle"
-																onMouseDown={(e) => onResizeStart(e, event)}
-															/>
 														</div>
-													</div>
-												);
-											}
+													);
+												}
 
-											return null;
-										})}
-									</div>
-								);
-							})}
-						</div>
-					))}
+												return null;
+											})}
+										</div>
+									);
+								})}
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</>

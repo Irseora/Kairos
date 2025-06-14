@@ -2,6 +2,24 @@
 	box-sizing: border-box;
 }
 
+.calendar-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.calendar-scrollable-body {
+    max-height: calc(100vh - 193px);
+    overflow-y: auto;
+    scrollbar-width: none;      /* Hide scrollbar - Firefox */
+    -ms-overflow-style: none;   /* Hide scrollbar - IE & Edge */
+}
+
+/* Hide scrollbar - Crome, Opera, Safari */
+.calendar-body::-webkit-scrollbar {
+    display: none;
+}
+
 .calendar-header, .time-row {
     display: grid;
     grid-template-columns: 60px repeat(7, 1fr);
@@ -83,5 +101,6 @@
     right: 0;
     height: 6px;
     cursor: ns-resize;
-    background: rgba(0, 0, 0, 0.1)
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }

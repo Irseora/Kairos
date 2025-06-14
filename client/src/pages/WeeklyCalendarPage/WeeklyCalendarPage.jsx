@@ -210,11 +210,12 @@ const WeeklyCalendarPage = () => {
 		if (!resizingEvent) return;
 
 		const handleMouseMove = (e) => {
-			const calendarTop = document
-				.querySelector(".weekly-calendar-container")
-				.getBoundingClientRect().top;
+			const scrollContainer = document.querySelector(
+				".calendar-scrollable-body"
+			);
+			const calendarTop = scrollContainer.getBoundingClientRect().top;
 
-			const pixelY = e.clientY - calendarTop;
+			const pixelY = e.clientY - calendarTop + scrollContainer.scrollTop;
 			const hour = Math.floor(pixelY / 40);
 
 			const newEnd = new Date(resizingEvent.startTime);
