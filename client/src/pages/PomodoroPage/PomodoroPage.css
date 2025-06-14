@@ -1,0 +1,15 @@
+.pomodoro-container {
+    padding-top: 300px;
+}
+
+.pomodoro-container .btn {
+    color: var(--text);
+    border: 1px solid var(--accent);
+    border-radius: 0.8rem;
+    background-color: var(--overlay5);
+}
+
+.pomodoro-container .btn:hover {
+    background-color: var(--overlay10);
+    border-radius: 0.8rem
+}

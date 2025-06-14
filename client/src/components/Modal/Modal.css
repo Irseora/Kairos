@@ -40,8 +40,14 @@
     margin-top: 1.5rem;
 }
 
-.modal-actions .btn:hover {
+.modal-actions .btn {
     background-color: var(--overlay5);
+    border: 1px solid var(--accent);
+    border-radius: 0.8rem
+}
+
+.modal-actions .btn:hover {
+    background-color: var(--overlay10);
     border-radius: 0.8rem
 }
 

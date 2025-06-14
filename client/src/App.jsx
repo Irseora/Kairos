@@ -6,6 +6,7 @@ import WeeklyCalendarPage from "./pages/WeeklyCalendarPage/WeeklyCalendarPage";
 import MonthlyCalendarPage from "./pages/MonthlyCalendarPage/MonthlyCalendarPage";
 import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
+import PomodoroPage from "./pages/PomodoroPage/PomodoroPage";
 
 function App() {
 	return (
@@ -33,11 +34,20 @@ function App() {
 					}
 				/>
 
-				<Route
+				{/* <Route
 					path="/calendar/month"
 					element={
 						<PrivateRoute>
 							<MonthlyCalendarPage />
+						</PrivateRoute>
+					}
+				/> */}
+
+				<Route
+					path="/pomodoro"
+					element={
+						<PrivateRoute>
+							<PomodoroPage />
 						</PrivateRoute>
 					}
 				/>

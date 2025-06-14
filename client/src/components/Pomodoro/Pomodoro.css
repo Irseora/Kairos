@@ -1,0 +1,19 @@
+.timer {
+    color: var(--text)
+}
+
+.timer-btns .btn {
+    color: var(--text);
+    border: 1px solid var(--accent);
+    border-radius: 0.8rem;
+    background-color: var(--overlay5);
+}
+
+.timer-btns .btn:hover {
+    background-color: var(--overlay10);
+    border-radius: 0.8rem
+}
+
+.badge-text {
+    color: var(--text) !important
+}
