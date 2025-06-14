@@ -5,3 +5,8 @@
 .week-nav h4 {
     margin: 0
 }
+
+.week-nav .btn:hover {
+    border-radius: 50%;
+    background-color: var(--overlay5);
+}

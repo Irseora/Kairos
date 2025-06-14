@@ -73,3 +73,7 @@
     border-radius: 50%;
     background-color: var(--overlay5);
 }
+
+.add-task-btn:disabled {
+    border: none;
+}

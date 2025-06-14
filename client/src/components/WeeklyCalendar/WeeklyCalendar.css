@@ -90,6 +90,10 @@
     padding: 4px;
 }
 
+.event-block-content p {
+    font-size: 14px;
+}
+
 .event-block:active {
     cursor: grabbing;
 }

@@ -33,8 +33,6 @@ const WeeklyCalendar = ({
 		}
 	}, []);
 
-	// -------------------------------------------------------
-
 	return (
 		<>
 			<div className="weekly-calendar-container">
@@ -99,7 +97,7 @@ const WeeklyCalendar = ({
 														>
 															<div className="event-content-wrapper">
 																<div className="event-block-content">
-																	{event.title}
+																	<p>{event.title}</p>
 																</div>
 
 																<div
