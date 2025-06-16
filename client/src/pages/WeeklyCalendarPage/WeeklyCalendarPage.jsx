@@ -205,6 +205,17 @@ const WeeklyCalendarPage = () => {
 		setResizingEvent(event);
 	};
 
+	// Close context menu by clicking outside
+	useEffect(() => {
+		const handleClick = () => {
+			if (contextMenu.visible) {
+				setContextMenu({ ...contextMenu, visible: false });
+			}
+		};
+		window.addEventListener("click", handleClick);
+		return () => window.removeEventListener("click", handleClick);
+	}, [contextMenu]);
+
 	// Live resize preview
 	useEffect(() => {
 		if (!resizingEvent) return;

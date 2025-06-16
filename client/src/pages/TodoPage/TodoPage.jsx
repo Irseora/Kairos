@@ -11,6 +11,7 @@ const TodoPage = () => {
 
 	const [lists, setLists] = useState([]);
 	const [loading, setLoading] = useState(true);
+
 	const [creatingList, setCreatingList] = useState(false);
 
 	const [contextMenu, setContextMenu] = useState({
