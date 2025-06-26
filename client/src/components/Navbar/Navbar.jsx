@@ -7,7 +7,7 @@ const navItems = [
 	{ label: "To-Do Lists", path: "/todos" },
 	{ label: "Calendar", path: "/calendar/week" },
 	{ label: "Pomodoro", path: "/pomodoro" },
-	{ label: "Stats", path: "/stats" },
+	// { label: "Stats", path: "/stats" },
 ];
 
 const Navbar = () => {
